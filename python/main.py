@@ -15,6 +15,29 @@ homeTeam = soup.find_all("div", "team home")  # homeTeam - finds all divs with c
 
 awayTeam = soup.find_all("div", "team away")  # awayTeam - finds all divs with class id 'team away'
 
+hteams = []
+
+ateams = []
+
+times = []
+for team in homeTeam:
+    hteams.append(team.contents[2].find_all("p", "team-name")[0].text)
+
+for team in awayTeam:
+    ateams.append(team.contents[2].find_all("p", "team-name")[0].text)
+
+
+for i in status:
+    times.append(i.text)
+
+
+final = []
+for p in range(0, len(hteams)):
+    final.append(hteams[p] + "," + ateams[p] + "," + times[p])
+
+print final
+
+"""
 print "Home Teams:"
 for team in homeTeam:
     print team.contents[2].find_all("p", "team-name")[0].text  # finds all home teams
@@ -30,3 +53,4 @@ print
 print"Status:"
 for i in status:
     print i.text
+"""
